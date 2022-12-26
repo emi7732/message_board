@@ -38,7 +38,9 @@ public class EditServlet extends HttpServlet {
 
         em.close();
 
+        //メッセージデータが存在しているときのみ
         // メッセージ情報とセッションIDをリクエストスコープに登録
+        if(m !=null) {
         request.setAttribute("message", m);
         request.setAttribute("_token", request.getSession().getId());
 
@@ -47,6 +49,7 @@ public class EditServlet extends HttpServlet {
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/edit.jsp");
         rd.forward(request, response);
+        }
     }
 
 }
